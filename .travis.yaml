@@ -1,0 +1,21 @@
+language: generic
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker run -t linkedweb/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true linkedweb/react-test npm test
+
+after_success:
+  - docker build -t linkedweb/multi-client ./client
+  - docker build -t linkedweb/multi-nginx ./nginx
+  - docker build -t linkedweb/multi-server ./server
+  - docker build -t linkedweb/multi-worker ./worker
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push linkedweb/multi-client
+  - docker push linkedweb/multi-nginx
+  - docker push linkedweb/multi-server
+  - docker push linkedweb/multi-worker
