@@ -8,7 +8,7 @@ import './App.css';
 const App = () => (
     <Router>
         <header>
-            <h1>Welcome to our app!</h1>
+            <h1>Fib Calculator</h1>
             <nav>
                 <Link to='/'>Home</Link>
                 <Link to='/otherpage'>Other Page</Link>
