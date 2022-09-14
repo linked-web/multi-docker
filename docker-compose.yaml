@@ -1,11 +1,11 @@
-version: "3"
+version: '3'
 services:
   client:
-    image: "linkedweb/multi-client"
+    image: 'linkedweb/multi-client'
     mem_limit: 128m
     hostname: client
   server:
-    image: "linkedweb/multi-server"
+    image: 'linkedweb/multi-server'
     mem_limit: 128m
     hostname: api
     environment:
@@ -17,15 +17,15 @@ services:
       - PG_PASSWORD=$PG_PASSWORD
       - PG_PORT=$PG_PORT
   worker:
-    image: "linkedweb/multi-worker"
+    image: 'linkedweb/multi-worker'
     mem_limit: 128m
     hostname: worker
     environment:
       - REDIS_HOST=$REDIS_HOST
       - REDIS_PORT=$REDIS_PORT
   nginx:
-    image: "linkedweb/multi-nginx"
+    image: 'linkedweb/multi-nginx'
     mem_limit: 128m
     hostname: nginx
     ports:
-      - "80:80"
+      - '80:80'
